@@ -60,7 +60,6 @@ class Exportacao(Base):
     valor = Column(Float, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow) 
 
-Base.metadata.drop_all(engine)
 Base.metadata.create_all(engine)
 
 app = FastAPI(
@@ -85,29 +84,29 @@ def incluir_banco(df, tipo):
     for index, row in df.iterrows():
         db = SessionLocal()
         if tipo.upper() == 'PRODUCAO':
-            new_row = Producao(
-                produto = row.produto,
-                quantidade = int(row.quantidade.replace('.','').replace('-','0')),
-                tipo = row.tipo
-            )
+                new_row = Producao(
+                    produto = row.produto,
+                    quantidade = int(row.quantidade.replace('.','').replace('-','0')),
+                    tipo = row.tipo
+                )
         elif tipo.upper() == 'PROCESSAMENTO':
-            new_row = Processamento(
-                cultivar = row.cultivar,
-                quantidade = int(row.quantidade.replace('.','').replace('-','0')),
-                tipo = row.tipo
-            )
+                new_row = Processamento(
+                    cultivar = row.cultivar,
+                    quantidade = int(row.quantidade.replace('.','').replace('-','0')),
+                    tipo = row.tipo
+                )
         elif tipo.upper() == 'COMERCIALIZACAO':
-            new_row = Comercializacao(
-                produto = row.produto,
-                quantidade = int(row.quantidade.replace('.','').replace('-','0')),
-                tipo = row.tipo
-            )
+                new_row = Comercializacao(
+                    produto = row.produto,
+                    quantidade = int(row.quantidade.replace('.','').replace('-','0')),
+                    tipo = row.tipo
+                )
         elif tipo.upper() == 'IMPORTACAO':
-            new_row = Importacao(
-                pais = row.pais,
-                quantidade = int(row.quantidade.replace('.','').replace('-','0')),
-                valor = float(row.valor.replace('.','').replace('-','0'))
-            )
+                new_row = Importacao(
+                    pais = row.pais,
+                    quantidade = int(row.quantidade.replace('.','').replace('-','0')),
+                    valor = float(row.valor.replace('.','').replace('-','0'))
+                )
         elif tipo.upper() == 'EXPORTACAO':
             new_row = Exportacao(
                 pais = row.pais,
