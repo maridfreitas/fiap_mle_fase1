@@ -132,30 +132,35 @@ async def home():
 async def get_items_producao():
     db = SessionLocal()
     producao = db.query(Producao).all()
+    db.close()
     return producao
 
 @app.get('/processamento', summary='Pegar dados de Processamento')
 async def get_items_processamento():
     db = SessionLocal()
     processamento = db.query(Processamento).all()
+    db.close()
     return processamento
 
 @app.get('/comercializacao', summary='Pegar dados de Comercialização')
 async def get_items_comercializacao():
     db = SessionLocal()
     comercializacao = db.query(Comercializacao).all()
+    db.close()
     return comercializacao
 
 @app.get('/importacao', summary='Pegar dados de Importação')
 async def get_items_importacao():
     db = SessionLocal()
     importacao = db.query(Importacao).all()
+    db.close()
     return importacao
 
 @app.get('/exportacao', summary='Pegar dados de Exportação')
 async def get_items_exportacao():
     db = SessionLocal()
     exportacao = db.query(Exportacao).all()
+    db.close()
     return exportacao
 
 @app.post('/otimizacao', summary='Otimização da quantidade de vinhos a ser produzida')
