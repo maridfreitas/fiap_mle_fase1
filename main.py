@@ -14,7 +14,7 @@ users = {
 
 security = HTTPBasic()
 
-DB_URL = "sqlite:///vinhos.db"
+DB_URL = "mysql+pymysql://sql10782535:MW7Jxx8quK@sql10.freesqldatabase.com:3306/sql10782535"
 engine = create_engine(DB_URL, echo=False)
 Base = declarative_base()
 SessionLocal = sessionmaker(bind=engine)
@@ -23,31 +23,31 @@ SessionLocal = sessionmaker(bind=engine)
 class Producao(Base):
     __tablename__ = 'producao'
     id = Column(Integer, primary_key=True, autoincrement=True)
-    produto = Column(String, nullable=False)
+    produto = Column(String(500), nullable=False)
     quantidade = Column(Integer, nullable=False)
-    tipo = Column(String, nullable=False)
+    tipo = Column(String(255), nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow)
 
 class Processamento(Base):
     __tablename__ = 'processamento'
     id = Column(Integer, primary_key=True, autoincrement=True)
-    cultivar = Column(String, nullable=False)
+    cultivar = Column(String(500), nullable=False)
     quantidade = Column(Integer, nullable=False)
-    tipo = Column(String, nullable=False)
+    tipo = Column(String(255), nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow)
 
 class Comercializacao(Base):
     __tablename__ = 'comercializacao'
     id = Column(Integer, primary_key=True, autoincrement=True)
-    produto = Column(String, nullable=False)
+    produto = Column(String(500), nullable=False)
     quantidade = Column(Integer, nullable=False)
-    tipo = Column(String, nullable=False)
+    tipo = Column(String(255), nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow)
 
 class Importacao(Base):
     __tablename__ = 'importacao'
     id = Column(Integer, primary_key=True, autoincrement=True)
-    pais = Column(String, nullable=False)
+    pais = Column(String(500), nullable=False)
     quantidade = Column(Integer, nullable=False)
     valor = Column(Float, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow)
@@ -55,7 +55,7 @@ class Importacao(Base):
 class Exportacao(Base):
     __tablename__ = 'exportacao'
     id = Column(Integer, primary_key=True, autoincrement=True)
-    pais = Column(String, nullable=False)
+    pais = Column(String(500), nullable=False)
     quantidade = Column(Integer, nullable=False)
     valor = Column(Float, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow) 
