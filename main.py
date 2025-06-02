@@ -6,6 +6,7 @@ from sqlalchemy import create_engine, Column, Integer, Float, String, DateTime
 from sqlalchemy.orm import declarative_base, sessionmaker
 import scraper
 import jwt
+import os
 
 users = {
     "teste1": "senha1",
@@ -14,7 +15,7 @@ users = {
 
 security = HTTPBasic()
 
-DB_URL = "sqlite:///tmp/vinhos.db"
+DB_URL = os.environ.get("DATABASE_URL")
 engine = create_engine(DB_URL, echo=False)
 Base = declarative_base()
 SessionLocal = sessionmaker(bind=engine)
