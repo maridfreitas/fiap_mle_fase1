@@ -14,7 +14,7 @@ users = {
 
 security = HTTPBasic()
 
-DB_URL = "mysql+pymysql://sql10782535:MW7Jxx8quK@sql10.freesqldatabase.com:3306/sql10782535"
+DB_URL = "sqlite:///tmp/vinhos.db"
 engine = create_engine(DB_URL, echo=False)
 Base = declarative_base()
 SessionLocal = sessionmaker(bind=engine)
